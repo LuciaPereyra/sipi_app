@@ -58,6 +58,9 @@
             },
             "development": {
               "browserTarget": "sipi_FE:build:development"
+            },
+            "options": {
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

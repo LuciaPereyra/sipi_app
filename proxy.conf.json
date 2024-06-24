@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://apisipi.ddns.net",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  

@@ -2,7 +2,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
-import { RolesService } from './roles.service';
 import { switchMap, finalize } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
@@ -18,7 +17,6 @@ export class AuthService {
 
     constructor(
         private userService: UserService,
-        private rolesService: RolesService,
         private router: Router
     ) { }
 

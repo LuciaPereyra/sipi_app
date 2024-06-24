@@ -25,6 +25,13 @@ export class DashboardProfComponent implements OnInit {
     { label: 'Node', value: 'node' },
     { label: 'Git', value: 'git' },
   ]
+  selectSubjects: any[] = [
+    { label: 'Ingeniería de Software', value: 'ingenieria de Software' },
+    { label: 'Base de datos', value: 'base de datos' },
+    { label: 'Backend', value: 'backend' },
+    { label: 'Frontend', value: 'frontend' },
+    { label: 'DOO', value: 'doo' },
+  ]
   formConfig: any[] = [];
   operacionCapitalizada: IOperacion = IOperacion.Crear
   @Input() tableName: string = 'Solicitudes'
@@ -112,7 +119,13 @@ export class DashboardProfComponent implements OnInit {
         type: 'select',
         options: this.selectOptions,
       },
-      { name: "requestedDate", label: 'Fecha', type: 'date' },
+      {
+        name: "requestedSubjects",
+        label: "Materias",
+        type: 'select',
+        options: this.selectSubjects,
+      },
+      { name: "requestedDate", label: 'Fecha', type: "date" },
       { name: "requestedAmount", label: 'Cantidad solicitada', type: 'text' },
       { name: "observations", label: 'Observaciones', type: 'text' },
     ];

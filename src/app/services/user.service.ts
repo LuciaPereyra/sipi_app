@@ -22,18 +22,18 @@ export class UserService {
     }
 
     public login(username: string, password: string) {
-        return this.httpClient.post('https://34.227.164.19/api/login', {
+        return this.httpClient.post('https://apisipi.ddns.net/api/login', {
             username,
             password
         }).pipe(
             tap((response: any) => {
-                if (response && response.status === true && response.token) {
-                    localStorage.setItem('token', response.token);
-                    this.user = response.user_data;
-                }
+                localStorage.setItem('token', response.token);
+                this.user = response.user_data;
             })
         );
     }
+
+
 
     public getUserData(): User | null {
         return this.user;

@@ -14,7 +14,7 @@ import { DashboardProfComponent } from './components/pages/dashboard-prof/dashbo
 import { DataTablesModule } from 'angular-datatables';
 import { FooterComponent } from './components/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './auth.interceptor';
+// import { AuthInterceptor } from './auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogTemplateComponent } from './components/commons/dialog-template/dialog-template.component';
@@ -66,13 +66,6 @@ import { TableCalendarComponent } from './components/pages/table-calendar/table-
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

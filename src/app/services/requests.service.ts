@@ -1,27 +1,44 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestsService {
 
-  private apiUrl = 'https://34.227.164.19/api/requests';
+  private apiUrl = 'https://apisipi.ddns.net/api/requests';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   // Obtener todas las solicitudes
   obtenerSolicitudes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+    const token = this.userService.getToken();
+    let headers = new HttpHeaders()
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return this.http.get<any[]>(`${this.apiUrl}`, { headers });
   }
   // Agregar una nueva solicitud
   agregarSolicitudProfessor(request: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, request);
+    const token = this.userService.getToken();
+    let headers = new HttpHeaders()
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return this.http.post<any>(`${this.apiUrl}`, request, { headers });
   }
   // Revisar una solicitud
   revisarSolicitud(request_id: any, status: any): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/review/${request_id}`, status);
+    const token = this.userService.getToken();
+    let headers = new HttpHeaders()
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return this.http.patch<any>(`${this.apiUrl}/review/${request_id}`, status, { headers });
   }
 }
 
