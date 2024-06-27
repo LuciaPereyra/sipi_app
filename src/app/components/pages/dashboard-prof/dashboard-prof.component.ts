@@ -9,6 +9,7 @@ import { DialogTemplateComponent } from '../../commons/dialog-template/dialog-te
 import { DialogService } from 'src/app/services/dialog.service';
 import { IOperacion } from 'src/app/models/operacion.model';
 import { CustomSnackbarComponent } from '../../commons/custom-snackbar/custom-snackbar.component';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-dashboard-prof',
@@ -43,11 +44,14 @@ export class DashboardProfComponent implements OnInit {
   @ViewChild(ReactiveFormComponent) reactiveFormComponent!: ReactiveFormComponent;
   @ViewChild(CustomSnackbarComponent) snackbarComponent!: CustomSnackbarComponent;
 
-  constructor(private requestsService: RequestsService, private dialogService: DialogService,) { }
+  constructor(private requestsService: RequestsService, private dialogService: DialogService, private userService: UserService) {
+    const token = this.userService.getToken();
+  }
 
   ngOnInit() {
     this.requestsService.obtenerSolicitudes().subscribe(
       (data) => {
+        console.log(data)
         this.dataSource.data = data;
         this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
       },
@@ -118,10 +122,11 @@ export class DashboardProfComponent implements OnInit {
         label: "Programas necesarios",
         type: 'select',
         options: this.selectOptions,
+        multiple: true
       },
       {
-        name: "requestedSubjects",
-        label: "Materias",
+        name: "requestedSubject",
+        label: "Materia",
         type: 'select',
         options: this.selectSubjects,
       },

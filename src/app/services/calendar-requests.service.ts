@@ -10,15 +10,18 @@ export class CalendarRequestsService {
 
   private apiUrl = 'https://apisipi.ddns.net/api/requests';
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  private token = '';
+
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.token = this.userService.getToken();
+  }
 
 
   // Obtener todas las solicitudes
   obtenerSolicitudesCalendario(): Observable<any[]> {
-    const token = this.userService.getToken();
     let headers = new HttpHeaders()
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+    if (this.token) {
+      headers = headers.set('Authorization', `Bearer ${this.token}`);
     }
     return this.http.get<any[]>(`${this.apiUrl}/calendar`, { headers });
   }

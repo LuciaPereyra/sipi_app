@@ -6,6 +6,7 @@ import { StudentsService } from '../../../services/students.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Observable } from 'rxjs';
 import { RequestsService } from '../../../services/requests.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -35,7 +36,6 @@ export class DashboardAdminComponent {
     private studentsService: StudentsService,
     private usersService: UsersService,
     private requestsService: RequestsService,
-
   ) { }
 
 

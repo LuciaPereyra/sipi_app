@@ -8,25 +8,26 @@ import { UserService } from './user.service';
 })
 export class UsersService {
   private apiUrl = 'https://apisipi.ddns.net/api/users';
+  private token = '';
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.token = this.userService.getToken();
+  }
 
   // Obtener todos los usuarios
   obtenerUsers(): Observable<any[]> {
-    const token = this.userService.getToken();
     let headers = new HttpHeaders()
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+    if (this.token) {
+      headers = headers.set('Authorization', `Bearer ${this.token}`);
     }
     return this.http.get<any[]>(`${this.apiUrl}`, { headers });
   }
 
   // Obtener un usuario por ID
   obtenerUserPorId(userId: number): Observable<any> {
-    const token = this.userService.getToken();
     let headers = new HttpHeaders()
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+    if (this.token) {
+      headers = headers.set('Authorization', `Bearer ${this.token}`);
     }
 
     return this.http.get<any>(`${this.apiUrl}/${userId}`, { headers });
@@ -34,10 +35,9 @@ export class UsersService {
 
   // Agregar un nuevo usuario
   agregarUser(user: any): Observable<any> {
-    const token = this.userService.getToken();
     let headers = new HttpHeaders()
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+    if (this.token) {
+      headers = headers.set('Authorization', `Bearer ${this.token}`);
     }
 
     return this.http.post<any>(`${this.apiUrl}`, user, { headers });
@@ -45,10 +45,9 @@ export class UsersService {
 
   // Actualizar un usuario existente por ID
   actualizarUser(userId: number, user: any): Observable<any> {
-    const token = this.userService.getToken();
     let headers = new HttpHeaders()
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+    if (this.token) {
+      headers = headers.set('Authorization', `Bearer ${this.token}`);
     }
 
     return this.http.patch<any>(`${this.apiUrl}/${userId}`, user, { headers });
@@ -56,10 +55,9 @@ export class UsersService {
 
   // Eliminar un usuario por ID
   eliminarUser(userId: number): Observable<any> {
-    const token = this.userService.getToken();
     let headers = new HttpHeaders()
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+    if (this.token) {
+      headers = headers.set('Authorization', `Bearer ${this.token}`);
     }
 
     return this.http.delete<any>(`${this.apiUrl}/delete/${userId}`, { headers });

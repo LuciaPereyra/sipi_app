@@ -32,7 +32,7 @@ export class ReactiveFormComponent implements OnInit {
       }
 
       formGroupConfig[field.name] = [
-        field.defaultValue || '',
+        { value: field.defaultValue || (field.multiple ? [] : ''), disabled: false },
         validators,
       ];
     });
