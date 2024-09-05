@@ -22,7 +22,7 @@ export class UserService {
     }
 
     public login(username: string, password: string) {
-        return this.httpClient.post('https://apisipi.ddns.net/api/login', {
+        return this.httpClient.post('https://api-sipi.ddns.net/api/login', {
             username,
             password
         }).pipe(

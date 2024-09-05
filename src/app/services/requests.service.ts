@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 })
 export class RequestsService {
 
-  private apiUrl = 'https://apisipi.ddns.net/api/requests';
+  private apiUrl = 'https://api-sipi.ddns.net/api/requests';
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
