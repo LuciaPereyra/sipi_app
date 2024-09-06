@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TableCalendarComponent } from './components/pages/table-calendar/table-calendar.component';
+import { DashboardBedelComponent } from './components/pages/dashboard-bedel/dashboard-bedel.component';
 
 
 
@@ -47,6 +48,7 @@ import { TableCalendarComponent } from './components/pages/table-calendar/table-
     CustomSnackbarComponent,
     CalendarComponent,
     TableCalendarComponent,
+    DashboardBedelComponent,
 
   ],
   imports: [

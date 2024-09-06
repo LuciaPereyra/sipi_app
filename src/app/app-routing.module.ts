@@ -8,6 +8,7 @@ import { CalendarComponent } from './components/pages/calendar/calendar.componen
 import { AuthGuard } from './auth.guard';
 import { DefaultComponent } from './components/pages/default/default.component';
 import { TableCalendarComponent } from './components/pages/table-calendar/table-calendar.component';
+import { DashboardBedelComponent } from './components/pages/dashboard-bedel/dashboard-bedel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'table/:tableName', component: TableComponent, canActivate: [AuthGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
   { path: 'calendar/:eventoId', component: TableCalendarComponent, canActivate: [AuthGuard] },
-
+  {path: 'dashboard-bedel',component: DashboardBedelComponent},
 ];
 
 @NgModule({
