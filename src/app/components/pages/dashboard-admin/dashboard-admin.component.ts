@@ -27,6 +27,7 @@ export class DashboardAdminComponent {
     { id: '5', title: 'Devoluciones', description: 'Devolución de computadoras.', img: '../../../assets/images/devoluciones.png' },
     { id: '6', title: 'Solicitudes', description: 'Lista de solicitudes de notebooks enviadas por los profesores.', img: '../../../assets/images/solicitudes.png' },
     { id: '7', title: 'Calendario y asignaciones', description: 'Entregas programadas y asignación de computadoras. ', img: '../../../assets/images/calendar.png' },
+    {id:'8', title: 'Estadísticas', description: 'Estadisticas', img: '../../../assets/images/estadisticas.png' },
   ]
 
   constructor(
@@ -70,6 +71,9 @@ export class DashboardAdminComponent {
       case '7':
         this.router.navigate(['/calendar']);
         break;
+        case '8':
+          this.router.navigate(['/statistics']);
+          break;
       default:
         // Manejar un caso no esperado si es necesario
         break;

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'table/:tableName', component: TableComponent, canActivate: [AuthGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
   { path: 'calendar/:eventoId', component: TableCalendarComponent, canActivate: [AuthGuard] },
-  {path: 'dashboard-bedel',component: DashboardBedelComponent},
+  {path: 'statistics',component: DashboardBedelComponent},
 ];
 
 @NgModule({
