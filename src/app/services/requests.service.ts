@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 })
 export class RequestsService {
 
-  private apiUrl = 'https://api-sipi.ddns.net/api/requests';
+  private apiUrl = 'http://localhost/api/requests';
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
@@ -39,6 +39,22 @@ export class RequestsService {
     }
 
     return this.http.patch<any>(`${this.apiUrl}/review/${request_id}`, status, { headers });
+  }
+
+
+  // Actualizar un usuario existente por ID
+  actualizarSolicitud(request_id: any, data: any): Observable<any> {
+    console.log('request_id:', request_id)
+    console.log('data:', data)
+
+    const token = this.userService.getToken();
+
+    let headers = new HttpHeaders()
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return this.http.post<any>(`${this.apiUrl}/edit/${request_id}`, data, { headers });
   }
 }
 

@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class StudentsService {
-  private apiUrl = 'https://api-sipi.ddns.net/api/students';
+  private apiUrl = 'http://localhost/api/students';
   private token = '';
 
   constructor(private http: HttpClient, private userService: UserService) {

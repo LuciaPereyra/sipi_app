@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class ComputersService {
-  private apiUrl = 'https://api-sipi.ddns.net/api/computers';
+  private apiUrl = 'http://localhost/api/computers';
 
   private token = '';
 
