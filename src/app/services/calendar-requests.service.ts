@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 })
 export class CalendarRequestsService {
 
-  private apiUrl = 'http://localhost/api/requests'; 
+  private apiUrl = 'https://api-sipi.ddns.net/api/requests'; 
 
   private token = '';
 
