@@ -3,67 +3,73 @@
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Taza de utilización de dispositivos</h3>
-        <p class="text-sm text-muted-foreground">Ingresos totales del mes</p>
+        <p class="text-sm text-muted-foreground">Porcentaje de uso de dispositivos en el mes(20 días)</p>
       </div>
       <div class="p-6">
-        <div class="text-4xl font-bold">$45,231.89</div>
+        <div class="text-4xl font-bold">1200 prestamos</div>
         <p class="text-sm text-muted-foreground">+20.1% desde el mes pasado</p>
       </div>
       <div class="flex items-center p-6">
         <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
+          <div style="width:100%;height:100%"><img style="margin:0 auto" src="../../../../assets/images/calendar.png" alt="porcentaje_prestamos"></div>
         </div>
       </div>
     </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Duración promedio del préstamo</h3>
-        <p class="text-sm text-muted-foreground">Nuevas suscripciones este mes</p>
+        <p class="text-sm text-muted-foreground">Duración por día</p>
       </div>
       <div class="p-6">
-        <div class="text-4xl font-bold">+2,350</div>
-        <p class="text-sm text-muted-foreground">+180.1% desde el mes pasado</p>
+        <div class="text-4xl font-bold">2 horas</div>
+        <p class="text-sm text-muted-foreground">15 minutos más que el mes pasado</p>
       </div>
       <div class="flex items-center p-6">
         <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
+          <div style="width:100%;height:100%"><img style="margin:0 auto" src="../../../../assets/images/calendar.png" alt="horas"></div>
         </div>
       </div>
     </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Disponibilidad de dispositivos</h3>
-        <p class="text-sm text-muted-foreground">Ventas totales del mes</p>
+        <p class="text-sm text-muted-foreground">Disponibilidad sobre hora pico</p>
       </div>
-      <div class="p-6">
-        <div class="text-4xl font-bold">+12,234</div>
-        <p class="text-sm text-muted-foreground">+19% desde el mes pasado</p>
+      <div style="display: flex; justify-content: space-around;">
+        <div class="p-6">
+          <div class="text-4xl font-bold">30%</div>
+          <p class="text-sm text-muted-foreground">hora pico</p>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold">50%</div>
+          <p class="text-sm text-muted-foreground">otros horarios</p>
+        </div>
       </div>
       <div class="flex items-center p-6">
         <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
+          <div style="width:100%;height:100%"><img style="margin:0 auto" src="../../../../assets/images/calendar.png" alt="horas"></div>
         </div>
       </div>
     </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Rechazos de préstamos</h3>
-        <p class="text-sm text-muted-foreground">Usuarios activos en este momento</p>
+        <p class="text-sm text-muted-foreground">Cantidad de rechazos debido a la falta de dispositivos</p>
       </div>
       <div class="p-6">
-        <div class="text-4xl font-bold">+573</div>
-        <p class="text-sm text-muted-foreground">+201 desde la última hora</p>
+        <div class="text-4xl font-bold">12,5%</div>
+        <p class="text-sm text-muted-foreground">150 rechazos</p>
       </div>
       <div class="flex items-center p-6">
         <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
+          <div style="width:100%;height:100%"><img style="margin:0 auto" src="../../../../assets/images/calendar.png" alt="horas"></div>
         </div>
       </div>
     </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Estadísticas por tipo de evento</h3>
-        <p class="text-sm text-muted-foreground">Los productos más vendidos este mes</p>
+        <p class="text-sm text-muted-foreground">Compara el uso en diferentes eventos</p>
       </div>
       <div class="p-6">
         <div class="relative w-full overflow-auto">
@@ -71,29 +77,29 @@
             <thead class="[&amp;_tr]:border-b">
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                  Producto
+                  Evento
                 </th>
                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                  Ventas
+                  % de uso
                 </th>
               </tr>
             </thead>
             <tbody class="[&amp;_tr:last-child]:border-0">
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Producto A</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">1,234</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Exámenes</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">40%</td>
               </tr>
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Producto B</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">987</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Prácticas</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">30%</td>
               </tr>
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Producto C</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">765</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Talleres</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">20%</td>
               </tr>
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Producto D</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">543</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Clases regulares</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">10%</td>
               </tr>
             </tbody>
           </table>
@@ -103,45 +109,48 @@
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class="text-2xl font-semibold leading-none tracking-tight">Histórico de mantenimiento o problemas técnicos</h3>
-        <p class="text-sm text-muted-foreground">Nuevos clientes registrados este mes</p>
+        <p class="text-sm text-muted-foreground">Cantidad de dispositivos fuera de servicio</p>
       </div>
       <div class="p-6">
-        <div class="text-4xl font-bold">+1,234</div>
-        <p class="text-sm text-muted-foreground">+25% desde el mes pasado</p>
+        <div class="text-4xl font-bold">5 dispositivos</div>
+        <p class="text-sm text-muted-foreground">5%</p>
       </div>
       <div class="flex items-center p-6">
         <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
+          <div style="width:100%;height:100%"><img style="margin:0 auto" src="../../../../assets/images/calendar.png" alt="horas"></div>
         </div>
       </div>
     </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Estadísticas de prioridad</h3>
-        <p class="text-sm text-muted-foreground">Tasa de conversión de visitantes a clientes</p>
+        <p class="text-sm text-muted-foreground">Eventos en los que se asignaron dispositivos según la prioridad</p>
       </div>
       <div class="p-6">
-        <div class="text-4xl font-bold">12.5%</div>
-        <p class="text-sm text-muted-foreground">+2.1% desde el mes pasado</p>
+        <div class="text-4xl font-bold">80%</div>
+        <p class="text-sm text-muted-foreground">Exámenes</p>
       </div>
-      <div class="flex items-center p-6">
-        <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
-        </div>
+      <div class="p-6">
+        <div class="text-4xl font-bold">60%</div>
+        <p class="text-sm text-muted-foreground">Clases</p>
       </div>
+      <div class="p-6">
+        <div class="text-4xl font-bold">40%</div>
+        <p class="text-sm text-muted-foreground">Prácticas</p>
+      </div>
+      
     </div>
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
       <div class="flex flex-col space-y-1.5 p-6">
         <h3 class=" text-2xl font-semibold leading-none tracking-tight">Tendencias de uso por horario</h3>
-        <p class="text-sm text-muted-foreground">Valor promedio de cada pedido</p>
+        <p class="text-sm text-muted-foreground">Periodo del día en donde hay más uso de dispositivos</p>
       </div>
       <div class="p-6">
-        <div class="text-4xl font-bold">$89.99</div>
-        <p class="text-sm text-muted-foreground">+5.2% desde el mes pasado</p>
+        <div class="text-4xl font-bold">19:00 a 21:00</div>
       </div>
       <div class="flex items-center p-6">
         <div class="w-full aspect-[4/3]">
-          <div style="width:100%;height:100%"></div>
+          <div style="width:100%;height:100%"><img style="margin:0 auto" src="../../../../assets/images/calendar.png" alt="porcentaje_prestamos"></div>
         </div>
       </div>
     </div>
