@@ -54,7 +54,7 @@ export class RequestsService {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
 
-    return this.http.post<any>(`${this.apiUrl}/edit/${request_id}`, data, { headers });
+    return this.http.patch<any>(`${this.apiUrl}/edit/${request_id}`, data, { headers });
   }
 }
 

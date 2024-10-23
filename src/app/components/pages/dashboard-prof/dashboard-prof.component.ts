@@ -55,7 +55,6 @@ export class DashboardProfComponent implements OnInit {
   ngOnInit() {
     this.requestsService.obtenerSolicitudes().subscribe(
       (data) => {
-        console.log(data)
         this.dataSource.data = data;
         this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
       },
@@ -83,7 +82,7 @@ export class DashboardProfComponent implements OnInit {
   openDialogTemplate(template: TemplateRef<any>, data: any = null) {
     this.data = data;
     this.id = data?.id;
-
+    console.log(data)
     this.operacionCapitalizada = data ? IOperacion.Editar : IOperacion.Crear;
 
     this.matDialogRef = this.dialogService.openDialogTemplate({
