@@ -40,5 +40,19 @@ export class RequestsService {
 
     return this.http.patch<any>(`${this.apiUrl}/review/${request_id}`, status, { headers });
   }
+
+
+  // Actualizar un usuario existente por ID
+  actualizarSolicitud(request_id: any, data: any): Observable<any> {
+
+    const token = this.userService.getToken();
+
+    let headers = new HttpHeaders()
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return this.http.patch<any>(`${this.apiUrl}/edit/${request_id}`, data, { headers });
+  }
 }
 

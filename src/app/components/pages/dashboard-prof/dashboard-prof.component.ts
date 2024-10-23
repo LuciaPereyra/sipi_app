@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input, ChangeDetectorRef } from '@angular/core';
 import { RequestsService } from '../../../services/requests.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -33,6 +33,8 @@ export class DashboardProfComponent implements OnInit {
     { label: 'Frontend', value: 'frontend' },
     { label: 'DOO', value: 'doo' },
   ]
+  data: any = null;
+  id: number = 0;
   formConfig: any[] = [];
   operacionCapitalizada: IOperacion = IOperacion.Crear
   @Input() tableName: string = 'Solicitudes'
@@ -44,14 +46,12 @@ export class DashboardProfComponent implements OnInit {
   @ViewChild(ReactiveFormComponent) reactiveFormComponent!: ReactiveFormComponent;
   @ViewChild(CustomSnackbarComponent) snackbarComponent!: CustomSnackbarComponent;
 
-  constructor(private requestsService: RequestsService, private dialogService: DialogService, private userService: UserService) {
-    const token = this.userService.getToken();
+  constructor(private requestsService: RequestsService, private dialogService: DialogService, private userService: UserService, private cdr: ChangeDetectorRef,) {
   }
 
   ngOnInit() {
     this.requestsService.obtenerSolicitudes().subscribe(
       (data) => {
-        console.log(data)
         this.dataSource.data = data;
         this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
       },
@@ -76,7 +76,10 @@ export class DashboardProfComponent implements OnInit {
     }
   }
 
-  openDialogTemplate(template: TemplateRef<any>) {
+  openDialogTemplate(template: TemplateRef<any>, data: any = null) {
+    this.data = data;
+    this.id = data?.id;
+    this.operacionCapitalizada = data ? IOperacion.Editar : IOperacion.Crear;
 
     this.matDialogRef = this.dialogService.openDialogTemplate({
       template,
@@ -85,33 +88,72 @@ export class DashboardProfComponent implements OnInit {
       .afterClosed()
       .subscribe(res => {
         this.reactiveFormComponent.resetForm();
+        this.operacionCapitalizada = IOperacion.Crear;
       })
+
+    if (this.operacionCapitalizada === IOperacion.Editar) {
+      this.reactiveFormComponent?.fillForm();
+    }
 
   }
 
   onSave(formValue: any) {
-    this.crearSolicitud(formValue);
+    this.crearSolicitud(this.operacionCapitalizada, formValue);
     this.matDialogRef.close();
   }
 
-  private crearSolicitud(datos: any) {
-    this.requestsService.agregarSolicitudProfessor(datos).subscribe(
-      (response) => {
-        console.log('Datos creados exitosamente:', response);
-        this.snackbarComponent.message = `Creación exitosa`
-        this.snackbarComponent.show();
-        this.requestsService.obtenerSolicitudes().subscribe(
-          (data) => {
-            this.dataSource.data = data;
-            this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
-          })
-      },
-      (error) => {
-        console.error('Error al enviar datos:', error);
-        this.snackbarComponent.message = `Creación Fallida ${error.error.message}`
-        this.snackbarComponent.show();
-      }
-    );
+  private refreshTable(request: any) {
+    const rqs = request
+    return rqs.subscribe(
+      (data: any) => {
+        this.dataSource.data = data;
+        this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
+        this.cdr.detectChanges();
+      })
+  }
+
+  private crearSolicitud(operacion: string, datos: any) {
+    if (operacion === IOperacion.Crear) {
+      this.requestsService.agregarSolicitudProfessor(datos).subscribe(
+        (response) => {
+          console.log('Datos creados exitosamente:', response);
+          this.snackbarComponent.message = `Creación exitosa`
+          this.snackbarComponent.show();
+          this.requestsService.obtenerSolicitudes().subscribe(
+            (data) => {
+              this.dataSource.data = data;
+              this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
+              this.cdr.detectChanges();
+            })
+
+          this.refreshTable(this.requestsService.obtenerSolicitudes())
+        },
+        (error) => {
+          console.error('Error al enviar datos:', error);
+          this.snackbarComponent.message = `Creación Fallida ${error.error.message}`
+          this.snackbarComponent.show();
+        }
+      );
+    } else if (operacion === IOperacion.Editar) {
+      this.requestsService.actualizarSolicitud(this.id, datos).subscribe(
+        (response) => {
+          console.log('Datos actualizados exitosamente:', response);
+          this.snackbarComponent.message = `Actualización exitosa`
+          this.snackbarComponent.show();
+          this.requestsService.obtenerSolicitudes().subscribe(
+            (data) => {
+              this.dataSource.data = data;
+              this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
+              this.cdr.detectChanges();
+            })
+        },
+        (error) => {
+          console.error('Error al actualizar datos:', error);
+          this.snackbarComponent.message = `Actualización Fallida ${error.error.message}`
+          this.snackbarComponent.show();
+        }
+      );
+    }
   }
 
   private getFormConfig(): any[] {
