@@ -6,6 +6,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
 * {
 
     margin: 0;
@@ -22,4 +23,14 @@ html,
 
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.custom-icon {
+    color: #4CAF50;
+    /* Color personalizado */
+}
+
+.custom-icon-delete {
+    color: #F44336  ;
+    /* Color personalizado */
 }

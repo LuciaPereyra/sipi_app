@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input, ChangeDetectorRef } from '@angular/core';
 import { RequestsService } from '../../../services/requests.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -46,11 +46,8 @@ export class DashboardProfComponent implements OnInit {
   @ViewChild(ReactiveFormComponent) reactiveFormComponent!: ReactiveFormComponent;
   @ViewChild(CustomSnackbarComponent) snackbarComponent!: CustomSnackbarComponent;
 
-  constructor(private requestsService: RequestsService, private dialogService: DialogService, private userService: UserService) {
-    const token = this.userService.getToken();
+  constructor(private requestsService: RequestsService, private dialogService: DialogService, private userService: UserService, private cdr: ChangeDetectorRef,) {
   }
-
-
 
   ngOnInit() {
     this.requestsService.obtenerSolicitudes().subscribe(
@@ -82,7 +79,6 @@ export class DashboardProfComponent implements OnInit {
   openDialogTemplate(template: TemplateRef<any>, data: any = null) {
     this.data = data;
     this.id = data?.id;
-    console.log(data)
     this.operacionCapitalizada = data ? IOperacion.Editar : IOperacion.Crear;
 
     this.matDialogRef = this.dialogService.openDialogTemplate({
@@ -106,6 +102,16 @@ export class DashboardProfComponent implements OnInit {
     this.matDialogRef.close();
   }
 
+  private refreshTable(request: any) {
+    const rqs = request
+    return rqs.subscribe(
+      (data: any) => {
+        this.dataSource.data = data;
+        this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
+        this.cdr.detectChanges();
+      })
+  }
+
   private crearSolicitud(operacion: string, datos: any) {
     if (operacion === IOperacion.Crear) {
       this.requestsService.agregarSolicitudProfessor(datos).subscribe(
@@ -117,7 +123,10 @@ export class DashboardProfComponent implements OnInit {
             (data) => {
               this.dataSource.data = data;
               this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
+              this.cdr.detectChanges();
             })
+
+          this.refreshTable(this.requestsService.obtenerSolicitudes())
         },
         (error) => {
           console.error('Error al enviar datos:', error);
@@ -131,6 +140,12 @@ export class DashboardProfComponent implements OnInit {
           console.log('Datos actualizados exitosamente:', response);
           this.snackbarComponent.message = `Actualización exitosa`
           this.snackbarComponent.show();
+          this.requestsService.obtenerSolicitudes().subscribe(
+            (data) => {
+              this.dataSource.data = data;
+              this.displayedColumns = data.length > 0 ? Object.keys(data[0]) : [];
+              this.cdr.detectChanges();
+            })
         },
         (error) => {
           console.error('Error al actualizar datos:', error);

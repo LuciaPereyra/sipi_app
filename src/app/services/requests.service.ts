@@ -44,8 +44,6 @@ export class RequestsService {
 
   // Actualizar un usuario existente por ID
   actualizarSolicitud(request_id: any, data: any): Observable<any> {
-    console.log('request_id:', request_id)
-    console.log('data:', data)
 
     const token = this.userService.getToken();
 
