@@ -47,6 +47,20 @@ td {
     min-height: 40vh;
 }
 
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    /* Opcional, para espacio */
+}
+
+.form-field {
+    border-radius: 12px;
+    height: auto !important;
+    min-width: 300px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .filter {
     display: flex;
     justify-content: space-between;
