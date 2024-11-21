@@ -35,6 +35,7 @@ export class TableComponent implements OnInit {
     { label: 'Profesor', value: 2 },
   ]
   status: boolean = true;
+  isDisabled: boolean = true;
 
   dataSource = new MatTableDataSource<any>();
 
@@ -63,7 +64,6 @@ export class TableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.dataSource)
     // Obtiene el nombre de la tabla de los parámetros de la ruta
     this.tableName = this.route.snapshot.paramMap.get('tableName');
     this.refreshTable()

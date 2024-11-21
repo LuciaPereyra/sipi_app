@@ -66,3 +66,38 @@ td {
     justify-content: space-between;
     align-items: center;
 }
+
+.clickable-icon {
+    width: 48px;
+    cursor: pointer;
+    color: #1c1b1bbc;
+}
+
+mat-icon.disabled {
+    width: 48px;
+    color: #555353bc;
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.mat-dialog-actions {
+    background-color: #00c853;
+    width: 40px;
+}
+
+.mat-mdc-paginator  {
+    display: initial;
+}

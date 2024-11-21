@@ -39,7 +39,7 @@
                         <!-- Ícono de ojo -->
                     </ng-container>
                     <ng-template #noQrData>
-                        <mat-icon color="">visibility_off</mat-icon>
+                        <mat-icon [ngClass]="{'disabled':column === 'qr'}">visibility_off</mat-icon>
                     </ng-template>
                 </ng-container>
 
@@ -112,12 +112,14 @@
 
 <!-- Modal para mostrar QR -->
 <ng-template #qrDialog let-data>
-    <h1 mat-dialog-title>QR Code</h1>
+    <div class="dialog-header">
+        <h1 mat-dialog-title>QR Code</h1>
+    </div>
     <div mat-dialog-content>
         <img [src]="data" alt="QR Code" style="max-width: 100%; height: auto;">
     </div>
-    <div mat-dialog-actions>
-        <button mat-button mat-dialog-close>Cerrar</button>
+    <div mat-dialog-actions class="dialog-actions">
+        <button mat-button mat-dialog-close class="mat-dialog-actions">Cerrar</button>
     </div>
 </ng-template>
 
