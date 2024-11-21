@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, TemplateRef, ChangeDetectorRef, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DialogService } from '../../../services/dialog.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogTemplateComponent } from '../../commons/dialog-template/dialog-template.component';
 import { UsersService } from '../../../services/users.service';
 import { ProgramsService } from '../../../services/programs.service';
@@ -35,6 +35,7 @@ export class TableComponent implements OnInit {
     { label: 'Profesor', value: 2 },
   ]
   status: boolean = true;
+  isDisabled: boolean = true;
 
   dataSource = new MatTableDataSource<any>();
 
@@ -46,6 +47,9 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  @ViewChild('qrDialog') qrDialog!: TemplateRef<any>;
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -55,9 +59,9 @@ export class TableComponent implements OnInit {
     private computersService: ComputersService,
     private studentsService: StudentsService,
     private cdr: ChangeDetectorRef,
-    private requestService: RequestsService
+    private requestService: RequestsService,
+    private dialog: MatDialog
   ) { }
-
 
   ngOnInit(): void {
     // Obtiene el nombre de la tabla de los parámetros de la ruta
@@ -100,6 +104,13 @@ export class TableComponent implements OnInit {
     if (this.operacionActual === IOperacion.Editar) {
       this.reactiveFormComponent?.fillForm();
     }
+  }
+
+  openQrDialog(qrData: string): void {
+    this.dialog.open(this.qrDialog, {
+      data: qrData,
+      width: '400px',
+    });
   }
 
   onSave(formValue: any) {

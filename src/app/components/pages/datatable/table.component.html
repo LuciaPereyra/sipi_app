@@ -19,20 +19,36 @@
         </div>
     </div>
 
-    <mat-form-field class="form-field">
-        <div class="filter">
-            <mat-label>Buscar</mat-label>
-            <mat-icon>search</mat-icon>
-        </div>
-        <input matInput (input)="applyFilter($event)" />
-    </mat-form-field>
+    <div class="search-container">
+        <mat-form-field class="form-field ">
+            <input matInput placeholder="Buscar" matInput (input)="applyFilter($event)" />
+            <mat-icon matSuffix class="icon-right">search</mat-icon>
+        </mat-form-field>
+    </div>
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
         <!-- Columnas -->
         <ng-container *ngFor="let column of columnHeaders" [matColumnDef]="column">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column }} </th>
-            <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column | titlecase }} </th>
+            <td mat-cell *matCellDef="let element">
+                <!-- Condición específica para la columna 'qr' -->
+                <ng-container *ngIf="column === 'qr'; else defaultContent">
+                    <ng-container *ngIf="element[column]; else noQrData">
+                        <mat-icon class="clickable-icon" (click)="openQrDialog(element[column])">visibility</mat-icon>
+                        <!-- Ícono de ojo -->
+                    </ng-container>
+                    <ng-template #noQrData>
+                        <mat-icon [ngClass]="{'disabled':column === 'qr'}">visibility_off</mat-icon>
+                    </ng-template>
+                </ng-container>
+
+                <!-- Plantilla por defecto para otras columnas -->
+                <ng-template #defaultContent>
+                    {{ element[column] }}
+                </ng-template>
+            </td>
+
         </ng-container>
 
         <!-- Columna de acciones -->
@@ -44,7 +60,7 @@
                         <mat-icon class="custom-icon">edit</mat-icon>
                     </button>
                     <button mat-icon-button (click)="openDialogTemplateDelete(template1, element)">
-                        <mat-icon class="custom-icon-delete">delete</mat-icon>
+                        <mat-icon matSuffix class="custom-icon-delete">delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
@@ -63,6 +79,8 @@
                 </td>
             </ng-container>
         </ng-container>
+
+
 
         <!-- Fila para mostrar datos vacíos o no encontrados -->
         <tr class="mat-row" *matNoDataRow>
@@ -89,6 +107,19 @@
     <div mat-dialog-actions class="mat-dialog-actions">
         <button mat-button mat-dialog-close>No</button>
         <button mat-button mat-dialog-close (click)="borrarItem()">Si</button>
+    </div>
+</ng-template>
+
+<!-- Modal para mostrar QR -->
+<ng-template #qrDialog let-data>
+    <div class="dialog-header">
+        <h1 mat-dialog-title>QR Code</h1>
+    </div>
+    <div mat-dialog-content>
+        <img [src]="data" alt="QR Code" style="max-width: 100%; height: auto;">
+    </div>
+    <div mat-dialog-actions class="dialog-actions">
+        <button mat-button mat-dialog-close class="mat-dialog-actions">Cerrar</button>
     </div>
 </ng-template>
 
