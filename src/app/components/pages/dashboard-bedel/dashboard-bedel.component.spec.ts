@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardBedelComponent } from './dashboard-bedel.component';
+import { DashboardBedel } from './dashboard-bedel.component';
 
-describe('DashboardBedelComponent', () => {
-  let component: DashboardBedelComponent;
-  let fixture: ComponentFixture<DashboardBedelComponent>;
+describe('DashboardBedel', () => {
+  let component: DashboardBedel;
+  let fixture: ComponentFixture<DashboardBedel>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardBedelComponent]
+      declarations: [DashboardBedel]
     });
-    fixture = TestBed.createComponent(DashboardBedelComponent);
+    fixture = TestBed.createComponent(DashboardBedel);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -18,5 +18,4 @@ describe('DashboardBedelComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-}); 
-
+});

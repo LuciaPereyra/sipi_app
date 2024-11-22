@@ -29,8 +29,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TableCalendarComponent } from './components/pages/table-calendar/table-calendar.component';
-import { DashboardBedelComponent } from './components/pages/dashboard-bedel/dashboard-bedel.component';
-
+import { DashboardBedelComponent } from './components/pages/statitics/dashboard-bedel.component';
+import { DashboardBedel } from './components/pages/dashboard-bedel/dashboard-bedel.component';
 
 
 @NgModule({
@@ -49,6 +49,7 @@ import { DashboardBedelComponent } from './components/pages/dashboard-bedel/dash
     CalendarComponent,
     TableCalendarComponent,
     DashboardBedelComponent,
+    DashboardBedel,
 
   ],
   imports: [
