@@ -33,6 +33,7 @@ export class TableComponent implements OnInit {
   selectOptions: any[] = [
     { label: 'Administrador', value: 1 },
     { label: 'Profesor', value: 2 },
+    { label:'Bedel', value: 3 },
   ]
   status: boolean = true;
   isDisabled: boolean = true;
